@@ -4,7 +4,7 @@ clear all
 channset = [54,55,56,142,151,160];
 chann = length(channset);
 cd  'C:\Users\canta\OneDrive - Monash University\'
-for x = 1:1
+for x = 2:2
     icaprodata = zeros(2426*600,172);
     if x == 1
         ff = 'awake';
@@ -31,17 +31,17 @@ for x = 1:1
 %         end
 %     end
 %     
-%     save(['Lab_201920\icaprodata_' ff '.mat'], 'icaprodata')
+%     save(['Lab_201920\Winter_Intern\icaprodata_' ff '.mat'], 'icaprodata')
 
 
    
-load (['Lab_201920\icaprodata_' ff '.mat'])
+load (['Lab_201920\Winter_Intern\icaprodata_' ff '.mat'])
 
 
     icapostdata = fastica(icaprodata','numOfIC', 15);
     icapostdata = icapostdata';
     
-    save(['Lab_201920\icapostdata_' ff '.mat'], 'icapostdata')
+    save(['Lab_201920\Winter_Intern\icapostdata_' ff '.mat'], 'icapostdata')
     
     figure; scatterhist(icapostdata(:, 1), icapostdata(:, 2));
     figure;
