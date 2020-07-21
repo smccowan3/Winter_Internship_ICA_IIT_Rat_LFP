@@ -1,6 +1,6 @@
 clear all; close all;
 cd  'C:\Users\canta\OneDrive - Monash University\'
-for xx = 1:2
+for xx = 2:2
     if xx ==1
         ff = 'awake';
     elseif xx ==2
@@ -15,7 +15,7 @@ for xx = 1:2
     %% Calculate TPM %%
     
     
-    for i=1:chann-1
+    for i=5:chann-1
         load(['BinVals\ICA_binaryvalues_' num2str(i) '_' ff '.mat'])
         currChData = bv;
         for k=i+1:chann
