@@ -17,15 +17,19 @@ for x = 1:19 %1:length(rowstart)
     if chann >= 87 && x >=4 && x <=16
         maxpoints = 10;
         gain = [0,-8,-17,-26,-35,-44,-53,-62,-71,-79];
+        modif = 0;
     elseif chann >= 87 && x ==2 || x==18
         maxpoints = 8;
         gain = [0,-9,-18,-27,-36,-45,-54,-63];
+        modif = 1;
     elseif chann <= 86 && x >=3 && x <=17
         maxpoints = 9;
         gain = [0,1,2,3,4,5,6,7,8];
+        modif = .5;
     elseif chann <= 86 && x ==1 || x == 19
         maxpoints = 7;
         gain = [0,1,2,3,4,5,6];
+        modif = 1.5;
     end
     
     
@@ -37,7 +41,7 @@ for x = 1:19 %1:length(rowstart)
         currchann = chann+currgain;
         res  = h-1;
         
-        ecogmap {currchann} = [x,startpoint-res];
+        ecogmap {currchann} = [20-x,startpoint-res+modif];
     end
 end
 
@@ -48,10 +52,19 @@ for IC = 1:1 %components
         currcn = ecogmap{1,cn};
         label = num2str(cn);
         clr = currICw(cn);
-        scatter(currcn(1), currcn(2), 50, clr, 'filled')
+        scatter(currcn(2), currcn(1), 100, clr, 'filled')
+        text(currcn(2)+.2, currcn(1), label, 'fontsize', 8)
+        xlim ([0 11])
+        ylim ([0 20])
         colorbar ;
+        h= colorbar;
+        set(h, 'ylim', [-1 1])
         hold on
     end
+    figure('Renderer', 'painters', 'Position', [10 10 900 600])
+    title(['Channel Weightings for IC ' num2str(IC) ' awake/anest'
 end
+
+
 
 

@@ -1,7 +1,7 @@
 close all
 cd  'C:\Users\canta\OneDrive - Monash University\Lab_201920\Winter_Intern\'
 components = 15;%changethis
-load ('Phi_Ouput\awake_phi_ICA_1_2.mat') %load to set parameters
+load ('Phi_Ouptut\awake_phi_ICA_1_2.mat') %load to set parameters
 states = length(state_phis(:,1));
 trn = length(state_phis(1,:));
 allchannplot = zeros(components,,19,2);
