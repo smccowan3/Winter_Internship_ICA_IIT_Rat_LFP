@@ -655,3 +655,8 @@ ICA_Weighting_Maps/IC_9_Weightings_Awakeanest.png
 ICA_SpatialEcogMap.asv
 ICA_Analysis_ConcatenateAwakeAnest.asv
 conc_anestawake.mat
+conc_anestawake.mat
+*.png
+*.asv
+*.asv
+*.mat

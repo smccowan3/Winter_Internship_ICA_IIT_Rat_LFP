@@ -2,34 +2,35 @@ close all
 clear all
 %addpath('FastICA_25\')
 cd 'D:\Lab_backup\Winter_Intern_D\'
-for x = 1:2
-    icaprodata = zeros(2426*600+2427*600,172);
-    if x == 1
-        ff = 'awake';
-        load(['icaprodata_' ff '.mat'])
-        data_awake = icaprodata;
-        
-    elseif x ==2
-        ff = 'anest';
-         load(['icaprodata_' ff '.mat'])
-        data_anest = icaprodata;
-        
-    end
-end
-
-
-icapreconcdata = vertcat(data_awake, data_anest);
-
-
-%save('conc_anestawake.mat', 'icapreconcdata', '-v7.3') 
-clear all
-close all
+% for x = 1:2
+%     icaprodata = zeros(2426*600+2427*600,172);
+%     if x == 1
+%         ff = 'awake';
+%         load(['icaprodata_' ff '.mat'])
+%         data_awake = icaprodata;
+%         
+%     elseif x ==2
+%         ff = 'anest';
+%          load(['icaprodata_' ff '.mat'])
+%         data_anest = icaprodata;
+%         
+%     end
+% end
+% 
+% 
+% icapreconcdata = vertcat(data_awake, data_anest);
+% 
+% 
+% save('conc_anestawake.mat', 'icapreconcdata', '-v7.3') 
+% %clear all
+%close all
 load ('conc_anestawake.mat')
+[icaconcdata, mixmat, sepmat] = fastica(icapreconcdata', 'numofIC', 15);
+save('icapostdata_awakeanest.mat','icaconcdata', 'mixmat', 'sepmat')
+%clearvars -icapreconcdata
 %clearvars  -except icapreconcdata
-%[icaconcdata, mixmat, sepmat] = fastica(icapreconcdata','numOfIC', 15);
-[coeff, score, latent, tsquared, explained] = pca(icapreconcdata,'NumComponents', 15);
-% icaconcdata = icaconcdata';
-% save('Lab_201920\Winter_Intern\icapostdata_awakeanest.mat', 'icaconcdata', 'mixmat', 'sepmat')
+
+
 % 
 % 
 % 

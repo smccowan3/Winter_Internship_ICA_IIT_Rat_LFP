@@ -1,12 +1,12 @@
 close all
-cd  'C:\Users\canta\OneDrive - Monash University\Lab_201920\Winter_Intern\'
+cd  'D:\Lab_backup\Winter_Intern_D\'
 load ('icapostdata_awakeanest.mat')
 
 %% split concatenated data
-awakedata = icaconcdata(1:1455600,:);
-awakedata = awakedata';
-anestdata = icaconcdata(1456201:2911800,:);
-anestdata = anestdata';
+awakedata = icaconcdata(:,1:1455600);
+save ('awake_icasplit.mat', 'awakedata');
+anestdata = icaconcdata(:,1456201:2911800);
+save ('anest_icasplit.mat', 'anestdata');
 
 
 for xx = 1:2
