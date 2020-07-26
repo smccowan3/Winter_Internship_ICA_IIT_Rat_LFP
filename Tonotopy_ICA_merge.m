@@ -5,7 +5,7 @@ int = 7;
 freq = 18;
 time = 600;
 
-for i = 1:components %:components-1
+for i = 8:components %:components-1
 load(['ICA_Output_reorg\awakereorg_ICA_' num2str(i) '.mat'])
 awakedata = reorg_ica;
 load(['ICA_Output_reorg\anestreorg_ICA_' num2str(i) '.mat'])

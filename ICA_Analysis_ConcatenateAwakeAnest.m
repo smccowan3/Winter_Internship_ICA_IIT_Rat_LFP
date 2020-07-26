@@ -25,8 +25,11 @@ cd 'D:\Lab_backup\Winter_Intern_D\'
 % %clear all
 %close all
 load ('conc_anestawake.mat')
-[icaconcdata, mixmat, sepmat] = fastica(icapreconcdata', 'numofIC', 15);
-save('icapostdata_awakeanest.mat','icaconcdata', 'mixmat', 'sepmat')
+%[icaconcdata, mixmat, sepmat] = fastica(icapreconcdata', 'numofIC', 15);
+[~,~,~,explained] = pca(icapreconcdata');
+
+
+%save('icapostdata_awakeanest.mat','icaconcdata', 'mixmat', 'sepmat')
 %clearvars -icapreconcdata
 %clearvars  -except icapreconcdata
 
