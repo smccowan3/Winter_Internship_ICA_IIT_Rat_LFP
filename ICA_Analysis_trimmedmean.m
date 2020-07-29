@@ -8,7 +8,6 @@ cd  'D:\Lab_backup\Winter_Intern_D\'
 % awakedata = data{1};
 % load('rat1_anest.mat')
 % anestdata = data{1};
-% 
 % icapredata = zeros(172,length(awakedata(1,:,1))+ length(anestdata(1,:,1)), 650);
 % for chann = 1:172
 %     for time = 1:650
