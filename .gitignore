@@ -660,3 +660,7 @@ conc_anestawake.mat
 *.asv
 *.asv
 *.mat
+conc_anestawake.mat
+conc_anestawake.mat
+ICA_Analysis.asv
+ICA_SpatialEcogMap.asv
