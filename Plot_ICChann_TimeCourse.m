@@ -33,13 +33,27 @@ end
 % now plot
 climtest = meantimecourse(:);
 CLIM =  prctile (climtest, [5 95]);
-%imagesc(meantimecourse, [CLIM])
-imagesc(meantimecourse, [-.25 .25])
+imagesc(meantimecourse, [CLIM])
+%imagesc(meantimecourse, [-.25 .25])
 title (['Z-scored Avg Timecourse Across Trials All Channs ' ff])
 colorbar
 xlabel ('Time (ms)')
 ylabel ('Channel')
 saveas (gcf, ['Sanity_Checks\cplot_avg_transformed_trimmed_allchanns_' ff '.png'])
+
+%% absolute value
+absmeantimecourse = abs(meantimecourse);
+climtest = absmeantimecourse(:);
+CLIM =  prctile (climtest, [5 95]);
+imagesc(meantimecourse, [CLIM])
+title (['Abs Z-scores Avg Timecourse Across Trials All Channs ' ff])
+colorbar
+xlabel ('Time (ms)')
+ylabel ('Channel')
+saveas (gcf, ['Sanity_Checks\abs_cplot_avg_transformed_trimmed_allchanns_' ff '.png'])
+
+
+
 end
 clear all
 close all
@@ -47,7 +61,7 @@ close all
 load ('icapostdata_awakeanest_trimmed.mat')
 awakedata = icaconcdata(:,1:1456200);
 anestdata = icaconcdata(:,1456201:2911800);
-for x = 2
+for x = 1
     if x == 1
         data = awakedata;
         ff = 'Awake';
@@ -80,5 +94,17 @@ xlabel ('Time (ms)')
 ylabel ('Independent Component')
 yticks([1:1:15])
 saveas (gcf, ['Sanity_Checks\cplot_avg_transformed_ICs_trimmed_ ' ff '.png'])
+
+%% absolute value
+absmeantimecourse = abs(meantimecourse);
+climtest = absmeantimecourse(:);
+CLIM =  prctile (climtest, [5 95]);
+imagesc(meantimecourse, [CLIM])
+title (['Abs Z-score All ICs Timecourse Across Trials ' ff])
+colorbar
+xlabel ('Time (ms)')
+ylabel ('Independent Component')
+saveas (gcf, ['Sanity_Checks\abs_cplot_avg_transformed_ICs_trimmed_ ' ff '.png'])
+
 end
 

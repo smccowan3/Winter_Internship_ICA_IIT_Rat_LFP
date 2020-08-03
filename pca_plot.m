@@ -1,0 +1,5 @@
+plot (explained_var, 'LineWidth', 4)
+title('PC Explained Variance')
+xlabel('Factor')
+xticks(1:10:172)
+ylabel('Variance Explained (%)')

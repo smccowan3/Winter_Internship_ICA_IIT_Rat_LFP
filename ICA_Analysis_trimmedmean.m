@@ -4,36 +4,38 @@ clear all
 cd  'D:\Lab_backup\Winter_Intern_D\'
 
 % 
-% load ('rat1_awake.mat')
-% awakedata = data{1};
-% load('rat1_anest.mat')
-% anestdata = data{1};
-% icapredata = zeros(172,length(awakedata(1,:,1))+ length(anestdata(1,:,1)), 650);
-% for chann = 1:172
-%     for time = 1:650
-%        icapredata(chann,1:2427,time)  = awakedata(chann, :,time);
-%        icapredata(chann,2428:4853,time) = anestdata(chann,:,time);
-%     end
-% end
+% % load ('rat1_awake.mat')
+% % awakedata = data{1};
+% % load('rat1_anest.mat')
+% % anestdata = data{1};
+% % icapredata = zeros(172,length(awakedata(1,:,1))+ length(anestdata(1,:,1)), 650);
+% % 
+% % for chann = 1:172
+% %     for time = 1:650
+% %        icapredata(chann,1:2427,time)  = awakedata(chann,:,time);
+% %        icapredata(chann,2428:4853,time) = anestdata(chann,:,time);
+% %     end
+% % end
+% % 
+% % save('icapretrimdata.mat','icapredata','-v7.3')
 % 
-% save('icapretrimdata.mat','icapredata','-v7.3')
-% 
-% %load('icapretrimdata.mat');
+% load('icapretrimdata.mat');
 % 
 % ntrials = length(icapredata(1,:,1));
 % icaprodata = zeros(ntrials*600,172);
 % 
-% for time = 1:600
-%     sprintf(['Starting time ' num2str(time)])
-%     meandata = icapredata(:,:,time+50);
+% 
+% for chann = 1:172
+%     meandata = icapredata(chann,:,:);
 %     meandata = meandata(:);
 %     meandatatrim = rmoutliers(meandata,'percentiles',[5 95]);
-%     timeavg = mean(meandatatrim);
-%     timestd= std(meandatatrim);
-%     for chann = 1:172
+%     channavg = mean(meandatatrim);
+%     channstd= std(meandatatrim);
+%     for time = 1:600
+%     sprintf(['Starting time ' num2str(time)])
 %         for trials = 1:ntrials
 %             int = (trials-1)*600+time;
-%             icaprodata(int,chann) = (icapredata(chann,trials,time+50) - timeavg) / timestd;
+%             icaprodata(int,chann) = (icapredata(chann,trials,time+50) - channavg) / channstd;
 %         end
 %     end
 % end
@@ -42,13 +44,14 @@ cd  'D:\Lab_backup\Winter_Intern_D\'
 
 load('icaprodata_awakeanest_trimmed.mat')
 
-clearvars -except icaprodata %% save some memory
-addpath('FastICA_25\')
+%clearvars -except icaprodata %% save some memory
+%addpath('FastICA_25\')
 
 %[icaconcdata, mixmat, sepmat] = fastica(icaprodata', 'numofIC', 15); %%fastica takes chan x samples
-clearvars -except icaprodata
-[~,~,~,explained_var] = pca(icaprodata'); %% pca takes samples x chann
-save('pca_explainedvar_trimmed.mat','explained_var');
+%clearvars -except icaprodata
+[coeff,~,~,~,explained_var] = pca(icaprodata); %% pca takes samples x chann
+save('pca_explainedvar_trimmed.mat','coeff', 'explained_var');
+clear all
 %save('icapostdata_awakeanest_trimmed.mat','icaconcdata', 'mixmat', 'sepmat') %'explained_var')
 
 

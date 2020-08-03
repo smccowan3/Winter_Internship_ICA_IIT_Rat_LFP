@@ -44,8 +44,8 @@ for x = 1:19 %1:length(rowstart)
         ecogmap {currchann} = [20-x,startpoint-res+modif];
     end
 end
-load ('icapostdata_awakeanest_trimmed.mat')
-mixmat = abs(mixmat);
+load ('pca_explainedvar_trimmed.mat')
+mixmat = abs(coeff);
 for IC = 1:15 %components
     if IC < 10
         ind = ['0' num2str(IC)];
@@ -68,13 +68,13 @@ for IC = 1:15 %components
         hold on
     end
     hold on
-    title(['IC ' ind])
+    title(['PC ' ind])
     set(gca,'Color','black')
     %figure('Renderer', 'painters', 'Position', [10 10 900 600])
 
     hold on
 end
-    saveas(gcf, ['ICA_Weighting_Maps_trimmed\IC_Weightings_Awakeanest.png'])
+    %saveas(gcf, ['ICA_Weighting_Maps_trimmed\IC_Weightings_Awakeanest.png'])
 
 
 
